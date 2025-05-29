@@ -1,17 +1,20 @@
 import { Suspense } from "react";
-import CabinList from "@/app/_components/CabinList";
-import Spinner from "@/app/_components/Spinner";
-import Counter from "@/app/_components/Counter";
+import CabinList from "../_components/CabinList";
+import Spinner from "../_components/Spinner";
+import Counter from "../_components/Counter";
+import Filter from "../_components/Filter";
+import ReservationReminder from "../_components/ReservationReminder";
 
 export const revalidate = 3600;
-// export const revalidate = 15; how often the data would be changed.
+// export const revalidate = 15;
 
-const { defaultHead } = require("next/head");
 export const metadata = {
   title: "Cabins",
 };
 
-export default function Page() {
+export default function Page({ searchParams }) {
+  const filter = searchParams?.capacity ?? "all";
+
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
@@ -26,28 +29,14 @@ export default function Page() {
         Welcome to paradise.
       </p>
 
-      <Suspense fallback={<Spinner />}>
-        <CabinList />
+      <div className="flex justify-end mb-8">
+        <Filter />
+      </div>
+
+      <Suspense fallback={<Spinner />} key={filter}>
+        <CabinList filter={filter} />
+        <ReservationReminder />
       </Suspense>
     </div>
   );
 }
-/*
-export default async function Page() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users");
-  const data = await res.json();
-
-  return (
-    <div>
-      <h1>Cabins page</h1>
-      <ul>
-        {data.map((user) => (
-          <li key={user.id}>{user.name}</li>
-        ))}
-      </ul>
-
-      <Counter users={data} />
-    </div>
-  );
-}
-*/
