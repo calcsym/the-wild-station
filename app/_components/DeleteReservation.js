@@ -7,6 +7,26 @@ import SpinnerMini from "./SpinnerMini";
 function DeleteReservation({ bookingId, onDelete }) {
   const [isPending, startTransition] = useTransition();
 
+  /*  function deleteReservation(){
+  
+    "use server"; 
+    We cannont know if this delete reservation will be a client or a server component,
+    // so it doesn't have the use client directive at the top. but if imported by a client component,
+    // it will be a client component.
+    So always need the use server directive in a server action that is defined inside a component.
+    So do export async function deleteReservation(bookingId) {
+    "use server";}  in actions.js 
+    if (confirm("Are you sure you want to delete this reservation?")) {
+      startTransition(() => onDelete(bookingId));
+    }
+  } */
+  /**
+   * Handles the deletion of a reservation.
+   * It prompts the user for confirmation and then calls the onDelete function
+   * with the bookingId if confirmed.
+   *
+   *
+   */
   function handleDelete() {
     if (confirm("Are you sure you want to delete this reservation?"))
       startTransition(() => onDelete(bookingId));

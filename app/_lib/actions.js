@@ -54,12 +54,17 @@ export async function createBooking(bookingData, formData) {
 }
 
 export async function deleteBooking(bookingId) {
+  /* test: in case that the operation is not sucessful, we throw an error, roll back the whole thing. 
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  throw new Error("This is a test error");
+*/
+
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 
   const guestBookings = await getBookings(session.user.guestId);
   const guestBookingIds = guestBookings.map((booking) => booking.id);
-
+  // avoid others from deleting your bookings, it's a security issue.
   if (!guestBookingIds.includes(bookingId))
     throw new Error("You are not allowed to delete this booking");
 
