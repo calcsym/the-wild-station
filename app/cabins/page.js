@@ -9,7 +9,7 @@ export const revalidate = 3600;
 // export const revalidate = 15;
 
 export const metadata = {
-  title: "Cabins",
+  title: "Coaches | The Wild Station",
 };
 
 export default function Page({ searchParams }) {
@@ -18,7 +18,7 @@ export default function Page({ searchParams }) {
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
-        Our Luxury Cabins
+        Our Fantasy Coaches
       </h1>
       <p className="text-primary-200 text-lg mb-10">
         Cozy yet luxurious cabins, located right in the heart of the Italian

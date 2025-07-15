@@ -10,7 +10,7 @@ function NotFound() {
         href="/cabins"
         className="inline-block bg-accent-500 text-primary-800 px-6 py-3 text-lg"
       >
-        Back to all cabins
+        Back to all Coaches
       </Link>
     </main>
   );

@@ -12,7 +12,7 @@ export default async function Navigation() {
             href="/cabins"
             className="hover:text-accent-400 transition-colors"
           >
-            Cabins
+            Coaches
           </Link>
         </li>
         <li>

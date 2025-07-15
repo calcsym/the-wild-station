@@ -9,8 +9,8 @@ function ReservationForm({ cabin, user }) {
   const { range, resetRange } = useReservation();
   const { maxCapacity, regularPrice, discount, id } = cabin;
 
-  const startDate = range.from;
-  const endDate = range.to;
+  const startDate = range?.from;
+  const endDate = range?.to;
 
   const numNights = differenceInDays(endDate, startDate);
   const cabinPrice = numNights * (regularPrice - discount);
@@ -82,7 +82,7 @@ function ReservationForm({ cabin, user }) {
         </div>
 
         <div className="flex justify-end items-center gap-6">
-          {!(startDate && endDate) ? (
+          {!(range?.from !== undefined && range?.to !== undefined) ? (
             <p className="text-primary-300 text-base">
               Start by selecting dates
             </p>
